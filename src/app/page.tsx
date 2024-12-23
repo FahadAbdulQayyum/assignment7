@@ -21,7 +21,6 @@ const Page = () => {
     const fetchAPI = async () => {
       const data: Response = await fetch('https://fakestoreapi.com/products');
       const dataJson: dataType[] = await data.json();
-      console.log('data...', dataJson);
       setAPIData(dataJson)
     }
 
