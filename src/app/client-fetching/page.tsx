@@ -3,13 +3,13 @@
 import React, { useEffect } from 'react'
 
 interface ClientFetchingType {
-    category: String,
-    description: String,
-    id: Number,
-    image: String,
-    price: Number,
-    rating: { rate: Number, count: Number },
-    title: String,
+    category: string,
+    description: string,
+    id: number,
+    image: string,
+    price: number,
+    rating: { rate: number, count: number },
+    title: string,
 }
 
 const ClientFetching = () => {
