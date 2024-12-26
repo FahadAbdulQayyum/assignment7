@@ -7,7 +7,25 @@ export async function getStaticProps() {
     };
 }
 
-export default function ServerFetching({ data }: any) {
+
+interface Product {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: {
+        rate: number;
+        count: number;
+    };
+}
+
+interface ServerFetchingProps {
+    data: Product;
+}
+
+export default function ServerFetching({ data }: ServerFetchingProps) {
     return (
         <div>
             <h1>Server Fetching</h1>
