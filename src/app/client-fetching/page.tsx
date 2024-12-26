@@ -1,35 +1,31 @@
 "use client"
 
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react';
 
-interface ClientFetchingType {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    rating: { rate: number, count: number },
-    title: string,
-}
+export default function ClientFetching() {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-const ClientFetching = () => {
     useEffect(() => {
-        const fetchFunction = async () => {
-            try {
-                const response = await fetch('https://fakestoreapi.com/products/1');
-                const data: ClientFetchingType = await response.json();
-                console.log('data...', data);
-            } catch (error) {
-                console.error('error...', error);
-            }
-        }
-        fetchFunction();
-    }, [])
+        fetch('https://fakestoreapi.com/products/1')
+            .then((response) => response.json())
+            .then((result) => {
+                setData(result);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) return <p>Loading...</p>;
+    if (!data) return <p>No data available</p>;
+
     return (
         <div>
-            {/* Render fetched data here */}
+            <h1>Client Fetching</h1>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
-    )
+    );
 }
-
-export default ClientFetching
