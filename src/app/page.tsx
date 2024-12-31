@@ -49,9 +49,9 @@ const Page = () => {
             </div>)}
           </div>
           :
-          <>
+          <div className="flex">
             Loading...!
-          </>
+          </div>
       }
     </div >
   )
