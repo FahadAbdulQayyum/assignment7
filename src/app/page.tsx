@@ -15,32 +15,7 @@ interface dataType {
 
 const Page = () => {
 
-  const [APIData, setAPIData] = useState<dataType[]>([
-    // {
-    //   "id": 0,
-    //   "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    //   "price": 109.95,
-    //   "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    //   "category": "men's clothing",
-    //   "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    //   "rating": {
-    //     "rate": 3.9,
-    //     "count": 120
-    //   },
-    // },
-    // {
-    //   "id": 1,
-    //   "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    //   "price": 109.95,
-    //   "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    //   "category": "men's clothing",
-    //   "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    //   "rating": {
-    //     "rate": 3.9,
-    //     "count": 120
-    //   },
-    // }
-  ]);
+  const [APIData, setAPIData] = useState<dataType[]>([]);
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -58,12 +33,22 @@ const Page = () => {
       {
         APIData.length
           ?
-          <>
-            {APIData?.map((v, i) => <div key={i} className="flex bg-gray-200 text-black my-2">
-              <h1>{v.title}</h1>
-              <Image src={v.image} alt={v.title} width={50} height={50} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+            {APIData?.map((v, i) => <div key={i}
+              className="flex flex-col justify-center items-center p-5 bg-gray-200 text-black space-y-2 relative"
+            >
+              <p className="absolute top-2 right-2">{v.rating.count}</p>
+              <p className="absolute top-2 left-2">
+                {Array.from({ length: Math.round(v.rating.rate) }, (_, index) => (
+                  <span key={index}>⭐</span>
+                ))}
+              </p>
+              <Image src={v.image} alt={v.title} width={200} height={200} />
+              <p className="text-sm font-bold">{v.title}</p>
+              <p className="text-sm capitalize">{v.category}</p>
+              <p>Rs {v.price}/=</p>
             </div>)}
-          </>
+          </div>
           :
           <>
             Loading...!
