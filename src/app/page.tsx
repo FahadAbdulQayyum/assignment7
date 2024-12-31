@@ -49,7 +49,7 @@ const Page = () => {
             </div>)}
           </div>
           :
-          <div className="flex justify-center items-center h-screen">
+          <div className="flex justify-center items-center text-6xl h-screen">
             Loading...!
           </div>
       }
